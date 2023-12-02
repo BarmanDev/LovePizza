@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import HeaderComponent from './components/HeaderComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
+import PizzaSelectorComponent from './components/PizzaSelectorComponent.vue'; 
 </script>
 
 <template>
-    <HeaderComponent />
-    <FooterComponent />
-    <RouterView />
+  <main>
+    <HeaderComponent/>
+    <PizzaSelectorComponent />
+    <FooterComponent/>
+    </main>
 </template>
 
 <style>
