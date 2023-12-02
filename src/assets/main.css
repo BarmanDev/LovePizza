@@ -1,0 +1,14 @@
+  *{
+    margin: 0;
+    padding: 0; 
+  }
+
+  :root {
+    --color-red-pomodoro: #d3061e;
+    --color-green: #2ECC71;
+    --color-beige: #D2B48C;
+    --color-yellow-cheese: #FFD700;
+    --color-white: #FFFFFF;
+  }  
+  
+  
