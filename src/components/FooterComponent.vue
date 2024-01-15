@@ -19,6 +19,9 @@
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 
 }
 
@@ -32,6 +35,7 @@ ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  margin-left: 1rem;
 }
 
 </style>

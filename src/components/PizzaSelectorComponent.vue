@@ -1,24 +1,3 @@
-<template>
-  <form>
-    <label for="pizzaSelect">Elige una pizza:</label>
-    <select v-model="selectedPizza" @input="mostrarIngredientes">
-      <option value="" disabled selected>Selecciona una pizza</option>
-      <option v-for="pizza in pizzas" :key="pizza.nombre" :value="pizza.nombre">{{ pizza.nombre }}</option>
-    </select>
-    <button type="button" @click="mostrarIngredientes">Mostrar Ingredientes</button>
-    <button type="button" @click="prepararPizza">Preparar Pizza</button>
-  </form>
-  
-  <div id="resultado">
-    <h2 v-if="selectedPizza">Resultado para {{ selectedPizza }}:</h2>
-    <ul v-if="selectedPizza">
-      <li v-for="ingrediente in ingredientes" :key="ingrediente">{{ ingrediente }}</li>
-    </ul>
-    <p v-if="preparacion" v-html="preparacion"></p>
-  </div>
-</template>
-
-
 <script lang="ts">
 import { defineComponent } from 'vue';
 
@@ -77,7 +56,8 @@ export default defineComponent({
         }
       ] as { nombre: string; ingredientes: string[] }[],
       ingredientes: [] as string[],
-      preparacion: "" as string
+      preparacion: "" as string,
+      pedidoRealizado: "" as string
     };
   },
   methods: {
@@ -109,10 +89,42 @@ export default defineComponent({
         this.ingredientes = [];
         this.preparacion = "";
       }
+    },
+    realizarPedido() {
+      if (this.selectedPizza) {
+        this.pedidoRealizado = `Su pedido de ${this.selectedPizza} se ha realizado correctamente.`;
+      } else {
+        this.pedidoRealizado = "Por favor, seleccione una pizza antes de realizar el pedido.";
+      }
     }
   }
 });
 </script>
+
+
+<template>
+  <form>
+    <label for="pizzaSelect">Elige una pizza:</label>
+    <select v-model="selectedPizza" @input="mostrarIngredientes">
+      <option value="" disabled selected>Selecciona una pizza</option>
+      <option v-for="pizza in pizzas" :key="pizza.nombre" :value="pizza.nombre">{{ pizza.nombre }}</option>
+    </select>
+    <button type="button" @click="mostrarIngredientes">Mostrar Ingredientes</button>
+    <button type="button" @click="prepararPizza">Preparar Pizza</button>
+    <button type="button" @click="realizarPedido">Realizar pedido</button>
+  </form>
+  
+  <div id="resultado">
+    <h2 v-if="selectedPizza">Resultado para {{ selectedPizza }}:</h2>
+    <ul v-if="selectedPizza">
+      <li v-for="ingrediente in ingredientes" :key="ingrediente">{{ ingrediente }}</li>
+    </ul>
+    <p v-if="preparacion" v-html="preparacion"></p>
+    <p v-if="pedidoRealizado">{{ pedidoRealizado }}</p>
+  </div>
+</template>
+
+
 <style scoped>
   form {
     margin-top: 20px;
